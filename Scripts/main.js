@@ -33,13 +33,13 @@ document.addEventListener("DOMContentLoaded", function() {
             tasks: tasks
         }).then(() =>{
             console.log("Tasks saved to Firebase");
-        }).catch(() =>{
+        }).catch((error) =>{
             console.error("Error saving tasks: ", error);
         })
     }
 
     function loadTasks() {
-        const taskDocRef = doc(db, "task", "taskList");
+        const taskDocRef = doc(db, "tasks", "taskList");
 
         getDoc(taskDocRef).then((docSnap) =>{
             if(docSnap.exists()){
