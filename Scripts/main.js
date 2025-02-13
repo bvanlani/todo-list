@@ -1,6 +1,6 @@
 import { initializeApp } from
 "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-import { getFirestone, doc, setDoc, getDoc } from
+import { getFirestore, doc, setDoc, getDoc } from
 "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
 
 const firebaseConfig = {
