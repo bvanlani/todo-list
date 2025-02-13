@@ -1,3 +1,23 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc} from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCC2RbIjJSIj2oW35WELjmKm-0geazqQ4U",
+  authDomain: "todo-list-b4f6c.firebaseapp.com",
+  projectId: "todo-list-b4f6c",
+  storageBucket: "todo-list-b4f6c.firebasestorage.app",
+  messagingSenderId: "35323086636",
+  appId: "1:35323086636:web:eb0f73fa52e34b1ff84e89"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 document.addEventListener("DOMContentLoaded", function() {
     const taskInput = document.getElementById("task-input");
     const addTaskButton = document.getElementById("add-task");
