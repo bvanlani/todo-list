@@ -1,20 +1,3 @@
-import { initializeApp } from
-"https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-import { getFirestore, doc, setDoc, getDoc } from
-"https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
-
-const firebaseConfig = {
-    apiKey: "AIzaSyCC2RbIjJSIj2oW35WELjmKm-0geazqQ4U",
-    authDomain: "todo-list-b4f6c.firebaseapp.com",
-    projectId: "todo-list-b4f6c",
-    storageBucket: "todo-list-b4f6c.firebasestorage.app",
-    messagingSenderId: "35323086636",
-    appId: "1:35323086636:web:eb0f73fa52e34b1ff84e89"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore();
-
 document.addEventListener("DOMContentLoaded", function() {
     const taskInput = document.getElementById("task-input");
     const addTaskButton = document.getElementById("add-task");
