@@ -1,3 +1,8 @@
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+import { getFirestone, doc, setDoc, getDoc } from
+"https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+
 const firebaseConfig = {
     apiKey: "AIzaSyCC2RbIjJSIj2oW35WELjmKm-0geazqQ4U",
     authDomain: "todo-list-b4f6c.firebaseapp.com",
@@ -7,13 +12,14 @@ const firebaseConfig = {
     appId: "1:35323086636:web:eb0f73fa52e34b1ff84e89"
 };
 
-const app = firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+const app = initializeApp(firebaseConfig);
+const db = getFirestore();
 
 document.addEventListener("DOMContentLoaded", function() {
     const taskInput = document.getElementById("task-input");
     const addTaskButton = document.getElementById("add-task");
     const taskList = document.getElementById("task-list");
+
     loadTasks();
 
     function addTask() {
@@ -40,20 +46,22 @@ document.addEventListener("DOMContentLoaded", function() {
             tasks.push(li.textContent.replace("X", "").trim());
         });
 
-        db.collection("tasks").doc("taskList").set({
+        setDoc(doc(db,"tasks", "taskList"),{
             tasks: tasks
-        }).then(() => {
-            console.log("Tasks saved to Firebase!");
-        }).catch((error) => {
+        }).then(() =>{
+            console.log("Tasks saved to Firebase");
+        }).catch(() =>{
             console.error("Error saving tasks: ", error);
-        });
+        })
     }
 
     function loadTasks() {
-        db.collection("tasks").doc("taskList").get().then((doc) => {
-            if (doc.exists) {
-                const tasks = doc.data().tasks;
-                tasks.forEach(taskText => {
+        const taskDocRef = doc(db, "task", "taskList");
+
+        getDoc(taskDocRef).then((docSnap) =>{
+            if(docSnap.exists()){
+                const tasks = docSnap.data().tasks;
+                tasks.forEach(taskText =>{
                     const li = document.createElement("li");
                     li.innerHTML = `${taskText} <button class="delete-btn">X</button>`;
                     taskList.appendChild(li);
@@ -65,8 +73,8 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 console.log("No tasks found");
             }
-        }).catch((error) => {
-            console.error("Error loading tasks", error);
+        }).catch((error) =>{
+            console.error("Error loading tasks: ", error);
         });
     }
 
